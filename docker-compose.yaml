@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  nessus:
+    build:
+      context: nessus_scanner
+    restart: always
+    volumes: 
+      - "nessusdata:/opt/nessus"
+    ports:
+      - "8834:8834"
+
+volumes:
+  nessusdata:
