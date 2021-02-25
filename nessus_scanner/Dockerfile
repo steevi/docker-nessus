@@ -9,10 +9,8 @@ RUN apt update && \
     rm -rf /var/lib/apt/lists/*
 
 COPY ${NESSUFILE}  /tmp/nessus.deb
-
-RUN dpkg -i /tmp/nessus.deb
-RUN rm /tmp/nessus.deb
+COPY entrypoint.sh /usr/bin/entrypoint.sh
 
 EXPOSE 8834
 
-CMD [ "/opt/nessus/sbin/nessus-service" ]
+ENTRYPOINT /usr/bin/entrypoint.sh
